@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Srujan Vaddiparthi | Applied ML & Data Science</title>
+  <meta name="description" content="Srujan Vaddiparthi — MS Data Science student at RIT working across applied machine learning, analytics, data systems, and generative AI for low-data computer vision." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: rgba(255, 255, 255, 0.07);
+      --panel-strong: rgba(255, 255, 255, 0.11);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --accent: #f97316;
+      --accent-2: #38bdf8;
+      --line: rgba(255,255,255,0.13);
+      --shadow: 0 18px 55px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.20), transparent 32%),
+        radial-gradient(circle at top right, rgba(249,115,22,0.18), transparent 30%),
+        radial-gradient(circle at bottom, rgba(34,197,94,0.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 52px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 42px;
+    }
+
+    .brand {
+      font-weight: 850;
+      letter-spacing: -0.035em;
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-copy { padding: 34px; }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6.5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+      margin: 0 0 20px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(1.03rem, 2vw, 1.22rem);
+      max-width: 760px;
+      margin: 0 0 24px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 760;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.065);
+      transition: transform 0.15s ease, border 0.15s ease, background 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.11);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #111827;
+      border-color: transparent;
+    }
+
+    .photo-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 420px;
+    }
+
+    .photo-wrap {
+      min-height: 330px;
+      background:
+        linear-gradient(135deg, rgba(56,189,248,0.18), rgba(249,115,22,0.18)),
+        rgba(255,255,255,0.04);
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-placeholder {
+      width: 78%;
+      aspect-ratio: 1;
+      border: 1px dashed rgba(255,255,255,0.28);
+      border-radius: 26px;
+      display: grid;
+      place-items: center;
+      color: var(--soft);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .photo-caption {
+      padding: 18px 22px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    section { margin-top: 24px; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 3vw, 2.05rem);
+      letter-spacing: -0.045em;
+    }
+
+    .section-note {
+      color: var(--soft);
+      margin: 0;
+      max-width: 560px;
+    }
+
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .identity-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .identity-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .identity-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .about-card {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .link-card {
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      min-height: 154px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, border 0.15s ease, background 0.15s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .link-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+
+    .link-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 0 0 14px;
+    }
+
+    .arrow {
+      color: var(--accent-2);
+      font-weight: 800;
+    }
+
+    .construction {
+      padding: 26px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .construction-icon {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(249,115,22,0.14);
+      border: 1px solid rgba(249,115,22,0.35);
+      font-size: 1.8rem;
+    }
+
+    .construction h2 { margin-bottom: 6px; }
+    .construction p { margin: 0; color: var(--muted); }
+
+    .contact-card {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 22px;
+    }
+
+    .contact-card p { color: var(--muted); margin-top: 0; }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-list a, .contact-list span {
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--soft);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .about-card,
+      .contact-card { grid-template-columns: 1fr; }
+
+      .identity-grid,
+      .link-grid { grid-template-columns: 1fr; }
+
+      .hero-copy { padding: 28px; }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links { justify-content: flex-start; }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .construction { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav">
+      <a class="brand" href="#top">Srujan Vaddiparthi</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#links">Links</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="card hero-copy">
+        <p class="eyebrow">Applied ML · Data Science · Research</p>
+        <h1>Hi, I’m Srujan.</h1>
+        <p class="lead">
+          I’m an MS Data Science student at Rochester Institute of Technology with an engineering background from BITS Pilani. I’m interested in practical machine learning, data systems, and research-driven AI work that connects models to real-world decisions.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="assets/Srujan_Vaddiparthi_Applied_ML_Data_Scientist_Resume.pdf" target="_blank" rel="noreferrer">View Resume</a>
+          <a class="button" href="https://github.com/SrujanVaddiparthi" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/srujan-vaddiparthi" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="button" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <aside class="card photo-card">
+        <div class="photo-wrap">
+          <!-- Replace this placeholder by adding your photo to assets/profile.jpg and uncommenting the img tag below. -->
+          <!-- <img class="profile-photo" src="assets/profile.jpg" alt="Photo of Srujan Vaddiparthi" /> -->
+          <div class="photo-placeholder">
+            Add your photo here<br />assets/prof_pic_1.JPG
+          </div>
+        </div>
+        <p class="photo-caption">
+          Currently exploring applied ML, generative AI for low-data computer vision, and local AI tooling for research-to-code workflows.
+        </p>
+      </aside>
+    </header>
+
+    <section aria-labelledby="identity-heading">
+      <div class="section-head">
+        <h2 id="identity-heading">What I work around</h2>
+        <p class="section-note">A quick snapshot for anyone scanning this from a QR code.</p>
+      </div>
+      <div class="identity-grid">
+        <article class="identity-card">
+          <h3>Applied ML</h3>
+          <p>Industrial ML, ensemble models, model evaluation, explainability, and uncertainty-aware prediction.</p>
+        </article>
+        <article class="identity-card">
+          <h3>Data Systems</h3>
+          <p>ETL workflows, SQL analytics, MongoDB, geospatial search, and backend-oriented data projects.</p>
+        </article>
+        <article class="identity-card">
+          <h3>Research Interests</h3>
+          <p>Generative AI for low-data computer vision, synthetic data generation, and local LLM workflows.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card about-card" id="about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Engineering roots, data science focus, practical ML mindset.</h2>
+      </div>
+      <div>
+        <p>
+          I like working on problems where data, engineering intuition, and actual user needs all matter. My work has included applied machine learning for industrial engineering decision support, analytics and reporting for business operations, and generative AI research for low-data computer vision.
+        </p>
+        <p>
+          Recently, I’ve been especially interested in how machine learning systems can be made more useful through better evaluation, uncertainty estimation, and explainability. I’m also exploring how smaller/local language models could support research workflows by helping read papers, find reference code, and generate skeletal implementation plans.
+        </p>
+        <p>
+          I’m currently exploring applied ML, ML engineering, data science, and data systems opportunities where I can keep building practical AI systems with measurable impact.
+        </p>
+      </div>
+    </section>
+
+    <section id="links">
+      <div class="section-head">
+        <h2>Links</h2>
+        <p class="section-note">The important stuff in one place.</p>
+      </div>
+      <div class="link-grid">
+        <a class="link-card" href="https://github.com/SrujanVaddiparthi" target="_blank" rel="noreferrer">
+          <div>
+            <h3>GitHub</h3>
+            <p>Code, projects, experiments, and coursework repositories.</p>
+          </div>
+          <span class="arrow">Open →</span>
+        </a>
+
+        <a class="link-card" href="https://www.linkedin.com/in/srujan-vaddiparthi" target="_blank" rel="noreferrer">
+          <div>
+            <h3>LinkedIn</h3>
+            <p>Professional updates, posts, project notes, and networking.</p>
+          </div>
+          <span class="arrow">Open →</span>
+        </a>
+
+        <a class="link-card" href="#portfolio">
+          <div>
+            <h3>Portfolio</h3>
+            <p>Project writeups are being organized here soon.</p>
+          </div>
+          <span class="arrow">Preview →</span>
+        </a>
+
+        <a class="link-card" href="assets/Srujan_Vaddiparthi_Applied_ML_Data_Scientist_Resume.pdf" target="_blank" rel="noreferrer">
+          <div>
+            <h3>Resume</h3>
+            <p>Applied ML / Data Science resume document.</p>
+          </div>
+          <span class="arrow">View →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="card construction" id="portfolio">
+      <div class="construction-icon" aria-hidden="true">🚧</div>
+      <div>
+        <p class="eyebrow">Portfolio</p>
+        <h2>Under construction</h2>
+        <p>
+          I’m organizing project writeups for applied ML, synthetic defect generation, MongoDB search systems, and analytics work. For now, the best places to explore my work are my resume, GitHub, and LinkedIn.
+        </p>
+      </div>
+    </section>
+
+    <section class="card contact-card" id="contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Let’s connect.</h2>
+        <p>
+          I’m open to conversations around applied ML, data science, AI systems, industrial analytics, generative AI, research tooling, and early-career opportunities.
+        </p>
+      </div>
+      <div class="contact-list">
+        <a href="mailto:sv6126@g.rit.edu">sv6126@g.rit.edu</a>
+        <a href="https://github.com/SrujanVaddiparthi" target="_blank" rel="noreferrer">github.com/SrujanVaddiparthi</a>
+        <a href="https://www.linkedin.com/in/srujan-vaddiparthi" target="_blank" rel="noreferrer">linkedin.com/in/srujan-vaddiparthi</a>
+        <span>If we met at BITSYNC, feel free to mention that in your message.</span>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Srujan Vaddiparthi</span>
+      <span>Built as a simple GitHub Pages personal hub.</span>
+    </footer>
+  </main>
+</body>
+</html>
